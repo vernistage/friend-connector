@@ -22,10 +22,14 @@ class RegistrationService
     end
 
     def scrape_website
-      doc = Nokogiri::HTML(open(@user.website))
-      doc.css('h1', 'h2', 'h3').each do |header|
-        @user.scraped_content << "#{header.text.downcase} | "
+      begin
+        doc = Nokogiri::HTML(open(@user.website))
+        doc.css('h1', 'h2', 'h3').each do |header|
+          @user.scraped_content << "#{header.text.downcase} | "
+        end
+        @user.scraped_content.chomp!(" | ")
+      rescue
+        @user.website = nil
       end
-      @user.scraped_content.chomp!(" | ")
     end
 end
