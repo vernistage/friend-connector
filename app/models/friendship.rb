@@ -16,6 +16,11 @@ class Friendship < ApplicationRecord
   after_create :create_inverse, unless: :has_inverse?
   after_destroy :destroy_inverse, if: :has_inverse?
 
+  def same_person?(m_id, f_id)
+    m_id == f_id
+  end
+
+  private
   def create_inverse
     Friendship.create(inverse_params)
   end
