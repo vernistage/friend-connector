@@ -14,4 +14,8 @@
 class Member < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
+
+  validates :name, :website, :short_url, :scraped_content, presence: true
+
+  validates :website, uniqueness: true
 end
