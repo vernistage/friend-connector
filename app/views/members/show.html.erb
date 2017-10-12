@@ -1,4 +1,10 @@
 <h1> <%= @member.name %>'s Profile </h1>
+<form action="/members/member_results" method="get">
+  Find new friends by interest:
+  <input type="text" name="topic">
+  <input type="hidden" name="user_id" value="<%= @member.id %>">
+  <input type="submit" value="Submit">
+</form>
 <h2> Details </h2>
 <ul>
   <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
@@ -6,7 +12,7 @@
 </ul>
 <h2> Specialities </h2>
 <ul>
-  <% @member.scraped_content.split(' | ').each do |header| %>
+  <% @member.interests_array(@member.scraped_content).each do |header| %>
     <li> <%= header %> </li>
   <% end %>
 </ul>
