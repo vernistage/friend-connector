@@ -5,11 +5,12 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(member_params)
+    RegistrationService.new(@member).register
     if @member.save
       flash[:notice] = "Member successfully created"
       redirect_to @member
     else
-      flash[:error] = 'There was an error saving your information'
+      flash[:alert] = 'There was an error saving your information'
       render 'new'
     end
   end
