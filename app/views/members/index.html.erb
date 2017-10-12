@@ -3,7 +3,7 @@
 <% @members.each do |member| %>
   <p>
     <ul>
-      <li> Name: <%= member.name %> </li>
+      <li> Name: <%= link_to "#{member.name}", member_path(member) %> </li>
       <li> Website: <%= link_to "#{member.short_url}", member.website, target: "_blank" %> </li>
       <li> Friend count: <%= member.friends.size %> </li>
     </ul>
