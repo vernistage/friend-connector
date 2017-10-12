@@ -7,11 +7,16 @@ class RegistrationService
   end
 
   def register
+    capitalize_name!
     create_short_url
     scrape_website
   end
 
   private
+    def capitalize_name!
+      @user.name.capitalize!
+    end
+
     def create_short_url
       @user.short_url = "http://#{SecureRandom.hex(3)}.#{SecureRandom.hex(1)}"
     end

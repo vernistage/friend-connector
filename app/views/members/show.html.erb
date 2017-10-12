@@ -1,2 +1,22 @@
-<h1>Members#show</h1>
-<p>Find me in app/views/members/show.html.erb</p>
+<h1> <%= @member.name %>'s Profile </h1>
+<h2> Details </h2>
+<ul>
+    <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
+    <li> Short link: <%= link_to "#{@member.short_url}", @member.website, target: "_blank" %> </li>
+</ul>
+<h2> Specialities </h2>
+<ul>
+  <% @member.scraped_content.split(' | ').each do |header| %>
+    <li> <%= header %> </li>
+  <% end %>
+</ul>
+<h2> Friends of <%= @member.name %> </h2>
+<% if @member.friends.any? %>
+  <ul>
+    <% @member.friends.each do |friend| %>
+      <li> <%= link_to "#{friend.name}", member_path(friend) %> </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> <%= @member.name %> is still looking for new friends. </p>
+<% end %>

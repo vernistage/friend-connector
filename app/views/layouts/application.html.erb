@@ -9,7 +9,12 @@
   </head>
 
   <body>
-    <%= render "flash" %>
-    <%= yield %>
+    <div id="header">
+      <%= render "menu" %>
+    </div>
+    <div id="content">
+      <%= render "flash" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

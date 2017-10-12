@@ -1,2 +1,11 @@
-<h1>Members#index</h1>
-<p>Find me in app/views/members/index.html.erb</p>
+<h1> Home </h1>
+<h2> Members </h2>
+<% @members.each do |member| %>
+  <p>
+    <ul>
+      <li> Name: <%= member.name %> </li>
+      <li> Website: <%= link_to "#{member.short_url}", member.website, target: "_blank" %> </li>
+      <li> Friend count: <%= member.friends.size %> </li>
+    </ul>
+  </p>
+<% end %>
