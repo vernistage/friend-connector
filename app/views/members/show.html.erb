@@ -1,8 +1,8 @@
 <h1> <%= @member.name %>'s Profile </h1>
 <h2> Details </h2>
 <ul>
-    <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
-    <li> Short link: <%= link_to "#{@member.short_url}", @member.website, target: "_blank" %> </li>
+  <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
+  <li> Short link: <%= link_to "#{@member.short_url}", @member.website, target: "_blank" %> </li>
 </ul>
 <h2> Specialities </h2>
 <ul>
@@ -11,6 +11,9 @@
   <% end %>
 </ul>
 <h2> Friends of <%= @member.name %> </h2>
+<% unless @member == current_user %>
+  <%= link_to "Add #{@member.name} as a friend", friendships_path(friendship: { member_id: current_user.id, friend_id: @member.id }), method: :post %>
+<% end %>
 <% if @member.friends.any? %>
   <ul>
     <% @member.friends.each do |friend| %>
