@@ -68,6 +68,9 @@ GEM
     execjs (2.7.0)
     factory_girl (4.8.1)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     ffi (1.9.18)
     formatador (0.2.5)
     formtastic (3.1.5)
@@ -83,6 +86,11 @@ GEM
       pry (>= 0.9.12)
       shellany (~> 0.0)
       thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-rspec (4.7.3)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     i18n (0.8.6)
     json (2.1.0)
     listen (3.1.5)
@@ -143,6 +151,10 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rspec (3.6.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -220,10 +232,10 @@ DEPENDENCIES
   annotate
   byebug
   dotenv-rails
-  factory_girl
+  factory_girl_rails
   faker!
   formtastic (~> 3.0)
-  guard
+  guard-rspec
   listen (>= 3.0.5, < 3.2)
   nokogiri
   pg

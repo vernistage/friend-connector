@@ -20,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'formtastic', '~> 3.0'
 gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
-gem 'factory_girl'
+gem 'factory_girl_rails'
 gem 'annotate', require: false
 gem 'nokogiri'
 
@@ -29,7 +29,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.6'
   gem 'selenium-webdriver'
-  gem 'guard'
+  gem 'guard-rspec', require: false
   gem 'pry'
   gem 'simplecov', require: false
 end
