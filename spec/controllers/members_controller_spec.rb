@@ -44,4 +44,11 @@ describe MembersController, type: :controller do
     end
   end
 
+  describe "GET #member_results" do
+    it "returns http success" do
+      get :member_results
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:member_results)
+    end
+  end
 end

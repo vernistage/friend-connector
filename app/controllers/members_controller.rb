@@ -23,6 +23,11 @@ class MembersController < ApplicationController
     @members = Member.all
   end
 
+  def member_results
+    FriendFinderService.new(params[:user_id], params[:topic])
+    render 'member_results'
+  end
+
   private
   def member_params
     params.require(:member).permit(:name, :website, :short_url, :scraped_content)
