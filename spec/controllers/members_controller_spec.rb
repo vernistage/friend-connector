@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe MembersController, type: :controller do
   let(:member) { create(:member) }
-  let(:unsaved_member) { build(:member) }
+  before(:each) do
+    @new_member = { member: { name: "name", website: "http://www.twitter.com" } }
+  end
 
   describe "GET #new" do
     it "returns http success" do
@@ -14,7 +16,7 @@ describe MembersController, type: :controller do
 
   describe "POST #create" do
     it "returns http success" do
-      post :create, params: { member: unsaved_member.as_json }
+      post :create, params: @new_member
       expect(response).to have_http_status(302)
       expect(flash["notice"]).to match("Member successfully created")
     end
@@ -22,7 +24,7 @@ describe MembersController, type: :controller do
     it "should fail" do
       post :create, params: { member: { name: nil, website: nil, short_url: "", scraped_content: "" } }
       expect(response).to have_http_status(200)
-      expect(flash["error"]).to match("There was an error saving your information")
+      expect(flash["alert"]).to match("There was an error saving your information")
     end
   end
 
@@ -42,4 +44,11 @@ describe MembersController, type: :controller do
     end
   end
 
+  describe "GET #member_results" do
+    it "returns http success" do
+      get :member_results
+      expect(response).to have_http_status(:success)
+      expect(response).to render_template(:member_results)
+    end
+  end
 end

@@ -12,10 +12,14 @@
 #
 
 class Member < ApplicationRecord
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
   validates :name, :website, :short_url, :scraped_content, presence: true
 
   validates :website, uniqueness: true
+
+  def interests_array(str)
+    str.split(' | ')
+  end
 end

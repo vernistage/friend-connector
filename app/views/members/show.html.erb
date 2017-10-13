@@ -1,4 +1,10 @@
 <h1> <%= @member.name %>'s Profile </h1>
+<form action="/members/member_results" method="get">
+  <%= @member.name %> can new friends by interest:
+  <input type="text" name="topic">
+  <input type="hidden" name="user_id" value="<%= @member.id %>">
+  <input type="submit" value="Submit">
+</form>
 <h2> Details </h2>
 <ul>
   <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
@@ -6,14 +12,11 @@
 </ul>
 <h2> Specialities </h2>
 <ul>
-  <% @member.scraped_content.split(' | ').each do |header| %>
+  <% @member.interests_array(@member.scraped_content).each do |header| %>
     <li> <%= header %> </li>
   <% end %>
 </ul>
 <h2> Friends of <%= @member.name %> </h2>
-<% unless @member == current_user %>
-  <%= link_to "Add #{@member.name} as a friend", friendships_path(friendship: { member_id: current_user.id, friend_id: @member.id }), method: :post %>
-<% end %>
 <% if @member.friends.any? %>
   <ul>
     <% @member.friends.each do |friend| %>
@@ -23,3 +26,11 @@
 <% else %>
   <p> <%= @member.name %> is still looking for new friends. </p>
 <% end %>
+<h2> <%= @member.name %> hasn't connected with the people below </h2>
+<ul>
+  <% FriendFinderService.new.possible_new_friends(@member).each do |friend| %>
+    <li>
+      <%= link_to "Make #{friend.name} their a friend", friendships_path(friendship: { member_id: @member.id, friend_id: friend.id }), method: :post  %>
+    </li>
+  <% end %>
+</ul>
