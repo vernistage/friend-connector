@@ -1,5 +1,5 @@
 class RegistrationService
-  require "SecureRandom"
+  require "securerandom"
   require "open-uri"
 
   def initialize(user)
