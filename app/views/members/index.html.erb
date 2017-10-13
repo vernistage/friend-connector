@@ -1,11 +1,15 @@
-<h1> Home </h1>
-<h2> Members </h2>
-<% @members.each do |member| %>
-  <p>
-    <ul>
-      <li> Name: <%= link_to "#{member.name}", member_path(member) %> </li>
-      <li> Website: <%= link_to "#{member.short_url}", member.website, target: "_blank" %> </li>
-      <li> Friend count: <%= member.friends.size %> </li>
-    </ul>
-  </p>
-<% end %>
+<div class="main-header">
+  <h1> Home </h1>
+</div>
+<div class="section">
+  <h2> Members </h2>
+  <% @members.each do |member| %>
+    <p>
+      <ul>
+        <li> Name: <%= link_to "#{member.name}", member_path(member) %> </li>
+        <li> Website: <%= link_to "#{member.short_url}", member.website, target: "_blank" %> </li>
+        <li> Friend count: <%= member.friends.size %> </li>
+      </ul>
+    </p>
+  <% end %>
+</div>
