@@ -1,9 +1,14 @@
-<h2> The following members share <%= @member.name %>'s interest in <%= @topic %> </h2>
+<div class="main-header">
+  <h1> The following members share <%= @member.name %>'s interest in <%= @topic %> </h1>
+</div>
 <% @possible_friends.each do |friend| %>
+  <div class="section">
   <h3> <%= friend.name %> </h3>
-    <ul> The following path connects <%= @member.name %> to <%= friend.name %>
+  The following path connects <%= @member.name %> to <%= friend.name %>
+    <ul>
       <% FriendConnectionsService.new.find_pathway(@possible_friends, @member, friend).each do |connection| %>
         <li> <%= connection.name %> </li>
       <% end %>
     </ul>
+  </div>
 <% end %>

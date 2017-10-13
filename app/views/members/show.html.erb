@@ -1,36 +1,48 @@
-<h1> <%= @member.name %>'s Profile </h1>
-<form action="/members/member_results" method="get">
-  <%= @member.name %> can new friends by interest:
-  <input type="text" name="topic">
-  <input type="hidden" name="user_id" value="<%= @member.id %>">
-  <input type="submit" value="Submit">
-</form>
-<h2> Details </h2>
-<ul>
-  <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
-  <li> Short link: <%= link_to "#{@member.short_url}", @member.website, target: "_blank" %> </li>
-</ul>
-<h2> Specialities </h2>
-<ul>
-  <% @member.interests_array(@member.scraped_content).each do |header| %>
-    <li> <%= header %> </li>
-  <% end %>
-</ul>
-<h2> Friends of <%= @member.name %> </h2>
-<% if @member.friends.any? %>
+<div class="main-header">
+  <h1> <%= @member.name %>'s Profile </h1>
+  <form action="/members/member_results" method="get">
+    <%= @member.name %> can add new friends by interest:
+    <p>
+      <input type="text" name="topic">
+      <input type="hidden" name="user_id" value="<%= @member.id %>">
+      <input type="submit" value="Submit">
+    </p>
+  </form>
+</div>
+<div class="section">
+  <h2> Details </h2>
   <ul>
-    <% @member.friends.each do |friend| %>
-      <li> <%= link_to "#{friend.name}", member_path(friend) %> </li>
+    <li> Member website: <%= link_to "#{@member.website}", @member.website, target: "_blank" %> </li>
+    <li> Short link: <%= link_to "#{@member.short_url}", @member.website, target: "_blank" %> </li>
+  </ul>
+</div>
+<div class="section">
+  <h2> Specialities </h2>
+  <ul>
+    <% @member.interests_array(@member.scraped_content).each do |header| %>
+      <li> <%= header %> </li>
     <% end %>
   </ul>
-<% else %>
-  <p> <%= @member.name %> is still looking for new friends. </p>
-<% end %>
-<h2> <%= @member.name %> hasn't connected with the people below </h2>
-<ul>
-  <% FriendFinderService.new.possible_new_friends(@member).each do |friend| %>
-    <li>
-      <%= link_to "Make #{friend.name} their a friend", friendships_path(friendship: { member_id: @member.id, friend_id: friend.id }), method: :post  %>
-    </li>
+</div>
+<div class="section">
+  <h2> Friends of <%= @member.name %> </h2>
+  <% if @member.friends.any? %>
+    <ul>
+      <% @member.friends.each do |friend| %>
+        <li> <%= link_to "#{friend.name}", member_path(friend) %> </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p> <%= @member.name %> is still looking for new friends. </p>
   <% end %>
-</ul>
+</div>
+<div class="section">
+  <h2> <%= @member.name %> hasn't connected with the people below </h2>
+  <ul>
+    <% FriendFinderService.new.possible_new_friends(@member).each do |friend| %>
+      <li>
+        <%= link_to "Make #{friend.name} their a friend", friendships_path(friendship: { member_id: @member.id, friend_id: friend.id }), method: :post  %>
+      </li>
+    <% end %>
+  </ul>
+</div>
