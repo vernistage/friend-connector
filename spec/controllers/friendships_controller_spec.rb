@@ -8,17 +8,11 @@ describe FriendshipsController, type: :controller do
     it "should succeed" do
       post :create, params: { friendship: { member_id: current_member.id, friend_id: friend.id } }
       expect(response).to have_http_status(302)
-      expect(flash["notice"]).to match("You are now friends")
+      expect(flash["notice"]).to match("#{current_member.name} is now friends with #{friend.name}")
     end
 
     it "should fail" do
       post :create, params: { friendship: { member_id: current_member.id, friend_id: current_member.id } }
-      expect(response).to have_http_status(302)
-      expect(flash["alert"]).to match("Could not connect to member")
-    end
-
-    it "gracefully fails if new friend not found" do
-      post :create, params: { friendship: { member_id: current_member.id, friend_id: 1000000 } }
       expect(response).to have_http_status(302)
       expect(flash["alert"]).to match("Could not connect to member")
     end
