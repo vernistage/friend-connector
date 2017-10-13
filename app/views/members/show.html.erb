@@ -41,7 +41,7 @@
   <ul>
     <% FriendFinderService.new.possible_new_friends(@member).each do |friend| %>
       <li>
-        <%= link_to "Make #{friend.name} their a friend", friendships_path(friendship: { member_id: @member.id, friend_id: friend.id }), method: :post  %>
+        <%= link_to "Make #{friend.name} their friend", friendships_path(friendship: { member_id: @member.id, friend_id: friend.id }), method: :post  %>
       </li>
     <% end %>
   </ul>
