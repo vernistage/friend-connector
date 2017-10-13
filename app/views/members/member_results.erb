@@ -1,0 +1,8 @@
+<h2> The following members share <%= @member.name %>'s interest in <%= @topic %> </h2>
+<ul>
+  <% @possible_friends.each do |friend| %>
+    <li>
+      <%= friend.name %>
+    </li>
+  <% end %>
+</ul>

@@ -1,6 +1,6 @@
 <h1> <%= @member.name %>'s Profile </h1>
 <form action="/members/member_results" method="get">
-  Find new friends by interest:
+  <%= @member.name %> can new friends by interest:
   <input type="text" name="topic">
   <input type="hidden" name="user_id" value="<%= @member.id %>">
   <input type="submit" value="Submit">
