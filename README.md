@@ -1,24 +1,24 @@
-# README
+# Friend Connector
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+----
+## Heroku
+ [See Friend Connector live on Heroku](http://friend-connector.herokuapp.com)
 
-Things you may want to cover:
+http://friend-connector.herokuapp.com
 
-* Ruby version
+>
+Ruby on Rails application that allows users to enter their name and a website to register. Upon registration, the website is scraped for all headings, and headings are stored as that user's interests. Users can form bidirectional friendships with other members and search for new friends by a topic of interest.
 
-* System dependencies
+----
+## Run Locally
+1. Clone this repository to your local machine.
+2. Run `bundle install` to install gem dependencies.
+3. Create a .env file for ENV variables [(per Dotenv)](https://github.com/bkeepers/dotenv).
+4. Run `rails db:create  db:migrate` to create and migrate database.
+5. Run `rails s` to start the server and make note of port number.
+6. You should be able to view app locally at the localhost address returned.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+----
+## Test Locally
+1. Run `bundle exec rspec` to run full suite.
+2. After running test suite, visit `coverage/index.html` in the browser to assess coverage of tests.
