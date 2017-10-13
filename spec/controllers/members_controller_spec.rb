@@ -46,7 +46,7 @@ describe MembersController, type: :controller do
 
   describe "GET #member_results" do
     it "returns http success" do
-      get :member_results
+      get :member_results, params: { user_id: member.id, topic: "grass" }
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:member_results)
     end

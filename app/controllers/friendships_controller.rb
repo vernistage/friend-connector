@@ -1,6 +1,5 @@
 class FriendshipsController < ApplicationController
-  include MembersHelper
-
+  
   def create
     @friendship = Friendship.new(friendship_params)
     @friend = Member.find(friendship_params[:friend_id])

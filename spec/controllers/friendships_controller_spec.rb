@@ -16,11 +16,5 @@ describe FriendshipsController, type: :controller do
       expect(response).to have_http_status(302)
       expect(flash["alert"]).to match("Could not connect to member")
     end
-
-    it "gracefully fails if new friend not found" do
-      post :create, params: { friendship: { member_id: current_member.id, friend_id: 1000000 } }
-      expect(response).to have_http_status(302)
-      expect(flash["alert"]).to match("Could not connect to member")
-    end
   end
 end
