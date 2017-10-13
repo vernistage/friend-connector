@@ -13,10 +13,9 @@ Ruby on Rails application that allows users to enter their name and a website to
 ## Run Locally
 1. Clone this repository to your local machine.
 2. Run `bundle install` to install gem dependencies.
-3. Create a .env file for ENV variables [(per Dotenv)](https://github.com/bkeepers/dotenv).
-4. Run `rails db:create  db:migrate` to create and migrate database.
-5. Run `rails s` to start the server and make note of port number.
-6. You should be able to view app locally at the localhost address returned.
+3. Run `rails db:create  db:migrate` to create and migrate database.
+4. Run `rails s` to start the server and make note of port number.
+5. You should be able to view app locally at the localhost address returned.
 
 ----
 ## Test Locally
