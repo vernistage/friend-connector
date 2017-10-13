@@ -24,7 +24,8 @@ class MembersController < ApplicationController
   end
 
   def member_results
-    FriendFinderService.new(params[:user_id], params[:topic])
+    @possible_friends = FriendFinderService.new.find_friends(params[:user_id], params[:topic])
+    binding.pry
     render 'member_results'
   end
 

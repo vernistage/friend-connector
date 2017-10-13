@@ -17,9 +17,6 @@
   <% end %>
 </ul>
 <h2> Friends of <%= @member.name %> </h2>
-<% unless @member == current_user %>
-  <%= link_to "Add #{@member.name} as a friend", friendships_path(friendship: { member_id: current_user.id, friend_id: @member.id }), method: :post %>
-<% end %>
 <% if @member.friends.any? %>
   <ul>
     <% @member.friends.each do |friend| %>
@@ -29,3 +26,11 @@
 <% else %>
   <p> <%= @member.name %> is still looking for new friends. </p>
 <% end %>
+<h2> <%= @member.name %> hasn't connected with the people below </h2>
+<ul>
+  <% FriendFinderService.new.possible_new_friends(@member).each do |friend| %>
+    <li>
+      <%= link_to "Make #{friend.name} their a friend", friendships_path(friendship: { member_id: @member.id, friend_id: friend.id }), method: :post  %>
+    </li>
+  <% end %>
+</ul>
